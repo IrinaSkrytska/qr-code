@@ -1,7 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+  </head>
+  <body>
     <script>
+      const activateAR = (href, isQuickLook, button) => {
+        const anchor = document.createElement("a");
+        if (isQuickLook) {
+          isQuickLook = true;
+
+          anchor.appendChild(document.createElement("img"));
+          anchor.rel = "ar";
+        }
+        anchor.setAttribute("href", href);
+        anchor.click();
+
+        anchor.addEventListener("message", (event) => {
+          button.dispatchEvent(new CustomEvent("quick-look-button-tapped"));
+        });
+      };
+
       const isMobile = {
         Android: function () {
           return navigator.userAgent.match(/Android/i);
@@ -30,11 +52,17 @@
       };
 
       if (isMobile.Android()) {
-        document.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=./bagel_Yellow.glb&mode=ar_only&resizable=false&disable_occlusion=true&`;
+        let href = `intent://arvr.google.com/scene-viewer/1.0?file=./bagel_Yellow.glb&mode=ar_only&resizable=false&disable_occlusion=true&`;
+        href +=
+          `#Intent;scheme=https;` +
+          `package=com.google.ar.core;` +
+          `action=android.intent.action.VIEW;`;
+
+        href += `end;`;
+        activateAR(href);
       } else if (isMobile.iOS()) {
         document.location.href = "./Kyiv_200x300.usdz";
       }
     </script>
-  </head>
-  <body></body>
+  </body>
 </html>
