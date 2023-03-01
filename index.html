@@ -61,7 +61,12 @@
         href += `end;`;
         activateAR(href);
       } else if (isMobile.iOS()) {
-        document.location.href = "./Kyiv_200x300.usdz";
+        const iosSrc = "./Kyiv_200x300.usdz";
+
+        let href = `${iosSrc}#`;
+
+        activateAR(href, true);
+        // document.location.href = "";
       }
     </script>
   </body>
