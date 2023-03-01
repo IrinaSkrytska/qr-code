@@ -30,7 +30,7 @@
       };
 
       if (isMobile.Android()) {
-        document.location.href = "./bagel_Yellow.glb";
+        document.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=./bagel_Yellow.glb&mode=ar_only&resizable=false&disable_occlusion=true&`;
       } else if (isMobile.iOS()) {
         document.location.href = "./Kyiv_200x300.usdz";
       }
