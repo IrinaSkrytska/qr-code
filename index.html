@@ -2,23 +2,7 @@
 <html>
   <head>
     <script>
-      const activateAR = (href, isQuickLook, button) => {
-        const anchor = document.createElement("a");
-        if (isQuickLook) {
-          isQuickLook = true;
-
-          anchor.appendChild(document.createElement("img"));
-          anchor.rel = "ar";
-        }
-        anchor.setAttribute("href", href);
-        anchor.click();
-
-        anchor.addEventListener("message", (event) => {
-          button.dispatchEvent(new CustomEvent("quick-look-button-tapped"));
-        });
-      };
-
-      const isMobile = {
+      var isMobile = {
         Android: function () {
           return navigator.userAgent.match(/Android/i);
         },
@@ -46,14 +30,11 @@
       };
 
       if (isMobile.Android()) {
-        document.location.href = "./bagel_Yellow.glb";
+        document.location.href =
+          "https://media.keyshot.com/scenes/envoy/envoy-opt.glb";
       } else if (isMobile.iOS()) {
-        const iosSrc = "./Kyiv_200x300.usdz";
-        let href = `${iosSrc}#`;
-
-        activateAR(href, button, true);
-
-        // document.location.href = "./Kyiv_200x300.usdz";
+        document.location.href =
+          "https://media.keyshot.com/scenes/envoy/envoy.usdz";
       }
     </script>
   </head>
