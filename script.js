@@ -42,14 +42,27 @@ const isMobile = {
 };
 
 if (isMobile.Android()) {
-  let href = `intent://arvr.google.com/scene-viewer/1.0?file=https://shishkaar.advin-global.com/assets/model/kyiv_165x240.glb&mode=ar_only&resizable=false&disable_occlusion=true&`;
-  href +=
-    `#Intent;scheme=https;` +
-    `package=com.google.ar.core;` +
-    `action=android.intent.action.VIEW;`;
+  fetch(
+    `https://advin-mjao.onrender.com/api/guess/armodels/63f4dc9046e2d89492ffe28f`,
+    {
+      cache: "no-store",
+    }
+  )
+    .then((response) => response.json())
+    .then(({ data }) => {
+      const src = data.model.android;
 
-  href += `end;`;
-  activateAR(href);
+      let href = null;
+      href = `intent://arvr.google.com/scene-viewer/1.0?file=${href}&mode=ar_only&resizable=false&disable_occlusion=true&`;
+
+      href +=
+        `#Intent;scheme=https;` +
+        `package=com.google.ar.core;` +
+        `action=android.intent.action.VIEW;`;
+
+      href += `end;`;
+      activateAR(href);
+    });
 } else if (isMobile.iOS()) {
   fetch(
     `https://advin-mjao.onrender.com/api/guess/armodels/63f4dc9046e2d89492ffe28f`,
