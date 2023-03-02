@@ -53,7 +53,7 @@ if (isMobile.Android()) {
       const src = data.model.android;
 
       let href = null;
-      href = `intent://arvr.google.com/scene-viewer/1.0?file=${href}&mode=ar_only&resizable=false&disable_occlusion=true&`;
+      href = `intent://arvr.google.com/scene-viewer/1.0?file=${src}&mode=ar_only&resizable=false&disable_occlusion=true&`;
 
       href +=
         `#Intent;scheme=https;` +
