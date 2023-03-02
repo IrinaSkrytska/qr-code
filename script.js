@@ -51,10 +51,19 @@ if (isMobile.Android()) {
   href += `end;`;
   activateAR(href);
 } else if (isMobile.iOS()) {
-  const iosSrc = "./Kyiv_200x300.usdz";
+  fetch(
+    `https://advin-mjao.onrender.com/api/guess/armodels/63f4dc9046e2d89492ffe28f`,
+    {
+      cache: "no-store",
+    }
+  )
+    .then((response) => response.json())
+    .then(({ data }) => {
+      const iosSrc = data.model.ios;
 
-  let href = `${iosSrc}#`;
+      let href = `${iosSrc}#`;
 
-  activateAR(href, true);
+      activateAR(href, true);
+    });
   // document.location.href = "";
 }
